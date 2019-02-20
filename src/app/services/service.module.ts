@@ -1,0 +1,45 @@
+import { NgModule } from '@angular/core';
+import { ServiceComponent } from '../service/service.component';
+import { ServiceshomeComponent } from './serviceshome/serviceshome.component';
+import { MobiledevComponent } from './mobiledev/mobiledev.component';
+import { SoftwaredevComponent } from './softwaredev/softwaredev.component';
+import { CloudComponent } from './cloud/cloud.component';
+import { RouterModule } from '@angular/router';
+
+
+@NgModule({
+    declarations: [
+        ServiceComponent,
+        ServiceshomeComponent,
+        MobiledevComponent,
+        SoftwaredevComponent,
+        CloudComponent
+    ],
+    imports: [
+        RouterModule.forRoot([{
+            path: "services",
+            component: ServiceComponent,
+            children: [
+              {
+                path: '',
+                component: ServiceshomeComponent
+              },
+              {
+                path: "softwaredev",
+                component: SoftwaredevComponent
+              },
+              {
+                path: "mobiledev",
+                component: MobiledevComponent
+              },
+              {
+                path: "cloud",
+                component: CloudComponent
+              }
+            ]
+          }])
+    ]
+})
+export class ServiceModule{
+
+}

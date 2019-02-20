@@ -6,15 +6,22 @@ import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ServiceComponent } from './service/service.component';
 import { RouterModule } from "@angular/router";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { FallbackComponent } from './fallback/fallback.component';
+import { ProductsModule } from './products/products.module';
+import { ServiceModule } from './services/service.module';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutusComponent,
-    ServiceComponent
+    FallbackComponent
   ],
   imports: [
     BrowserModule,
+    ProductsModule,
+    ServiceModule,
     RouterModule.forRoot([
       {
         path: "",
@@ -27,8 +34,13 @@ import { RouterModule } from "@angular/router";
       {
         path: "contactus",
         component: ServiceComponent
+      },
+      {
+        path: "**",
+        component: FallbackComponent
       }
-    ])
+    ]),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
