@@ -5,6 +5,9 @@ import { SoftwareComponent } from '../software/software.component';
 import { MobileappsComponent } from '../mobileapps/mobileapps.component';
 import { CloudappsComponent } from '../cloudapps/cloudapps.component';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ItemComponent } from './software/item/item.component';
 
 
 @NgModule({
@@ -13,10 +16,14 @@ import { RouterModule } from '@angular/router';
         ProducthomeComponent,
         SoftwareComponent,
         MobileappsComponent,
-        CloudappsComponent
+        CloudappsComponent,
+        ItemComponent
     ],
-    imports: [RouterModule.forRoot([{
-        path: "products",
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      RouterModule.forChild([{
+        path: "",
         component: ProductsComponent,
         // redirectTo: 'aboutus',
         // pathMatch: 'full'
@@ -27,7 +34,14 @@ import { RouterModule } from '@angular/router';
           },
           {
             path: "software",
-            component: SoftwareComponent
+            component: SoftwareComponent,
+            children: [
+              {
+                // http:localhost:4200/products/software/90/price/220
+                path: ':pid/price/:price',
+                component: ItemComponent
+              }
+            ]
           },
           {
             path: "mobile",

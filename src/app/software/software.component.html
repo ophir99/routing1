@@ -1,3 +1,17 @@
 <p>
   software works!
 </p>
+
+<ul>
+  <li *ngFor="let item of products">
+    {{item.name}}
+    <!-- <button routerLink="./{{item.id}}/{{item.price}}">Go</button> -->
+    <!-- <a routerLink="./{{item.id}}/{{item.price}}">Go</a> -->
+    <a [routerLink]="['./', item.id, 'price', item.price]" [queryParams]="{
+      productname: item.name,
+      location: 'IND'
+    }">Go</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

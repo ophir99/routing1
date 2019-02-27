@@ -16,8 +16,8 @@ import { RouterModule } from '@angular/router';
         CloudComponent
     ],
     imports: [
-        RouterModule.forRoot([{
-            path: "services",
+        RouterModule.forChild([{
+            path: "",
             component: ServiceComponent,
             children: [
               {
