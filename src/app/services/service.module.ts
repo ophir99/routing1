@@ -5,6 +5,7 @@ import { MobiledevComponent } from './mobiledev/mobiledev.component';
 import { SoftwaredevComponent } from './softwaredev/softwaredev.component';
 import { CloudComponent } from './cloud/cloud.component';
 import { RouterModule } from '@angular/router';
+import { ServicesComponent } from './services.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
         ServiceshomeComponent,
         MobiledevComponent,
         SoftwaredevComponent,
-        CloudComponent
+        CloudComponent,
+        ServicesComponent
     ],
     imports: [
         RouterModule.forChild([{

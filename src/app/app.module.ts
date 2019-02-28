@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { ServiceModule } from './services/service.module';
 import { CustomPreloading } from './custom.preloading';
 import { HttpClientModule } from "@angular/common/http";
 import { AboutusresolverService } from './aboutusresolver.service';
+import { AboutusActivate } from './aboutus/aboutus.activate.guard';
+import { AboutUsDeactivate } from './aboutus/aboutus.deactivate.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +24,9 @@ import { AboutusresolverService } from './aboutusresolver.service';
     FallbackComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
+    BrowserTransferStateModule,
     RouterModule.forRoot([
       {
         path: "",
@@ -34,20 +37,14 @@ import { AboutusresolverService } from './aboutusresolver.service';
         resolve:{
             postsRes: AboutusresolverService,
         },
+        canActivate: [AboutusActivate],
+        canDeactivate: [AboutUsDeactivate],
         component: AboutusComponent
       },
       {
         path: "contactus",
         component: AboutusComponent
       },
-      {
-        path: "services",
-        loadChildren: "./services/service.module#ServiceModule"
-      },
-      {
-        path: "products",
-        loadChildren: "./products/products.module#ProductsModule"
-      }, 
       {
         path: "**",
         component: FallbackComponent
